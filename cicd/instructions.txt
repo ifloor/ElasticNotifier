@@ -1,0 +1,5 @@
+1. docker login
+2. (this commands should be run on dist folder)
+3. (copy node_modules from ../ to ./)
+4. docker build -t ifloor/elastic-notifier:version .
+5. docker push ifloor/elastic-notifier:version

@@ -1,0 +1,37 @@
+{
+	elastic-config: ElasticConfig,
+	watch-index: String, // It will read this index on elastic, ex: monitoring-index
+	watch-seconds-interval: number, // The interval between queries on elastic
+	notification-processors: [NotificationProcessor]
+}
+
+ElasticConfig: {
+	elastic-server: String, // Full server url, ex: https://url.com:9200
+	elastic-user: String,  // User to do the login on elasticsearch
+	elastic-user-password: String, // Password for the above user
+}
+
+NotificationProcessor: {
+	for-tag: String, // value that when found on 'tag' field, will trigger this processor
+	destinations: [NotificationDestination]
+}
+
+NotificationDestinationType: ["Discord"]
+
+// When Discord type
+NotificationDestination: {
+    type: NotificationDestinationType,
+    webhook-url: String,
+
+// The below fields can be specified on the elastic object that will be watched
+//  title: String,
+//  author: String,
+//  message-url: String,
+//  color: String,
+//  thumbnail: String,
+//  description: String,
+//  image: String,
+//  footer: String
+// The meaning of these fields are based on: https://www.npmjs.com/package/discord-webhook-node
+}
+

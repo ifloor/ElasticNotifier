@@ -20,6 +20,12 @@ jobs:
       - run: npm install
       - run: npm run build
 
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        with:
+          path: package.json
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -43,4 +49,4 @@ jobs:
         with:
           context: "./dist"
           push: true
-          tags: user/app:latest
+          tags: ifloor/elastic-notifier:${{ steps.package-version.outputs.current-version}}

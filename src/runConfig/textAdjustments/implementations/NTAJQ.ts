@@ -7,10 +7,12 @@ export class NTAJQ {
     private static readonly TextSelectionStartTagNode: string = "text-selection-start-tag";
     private static readonly TextSelectionEndTagNode: string = "text-selection-end-tag";
     private static readonly JqTransformationExpressionsNode: string = "jq-transformation-expressions";
+    private static readonly JqTransformationIsRaw: string = "jq-transformation-is-raw";
 
     private readonly _textSelectionStartTag: string;
     private readonly _textSelectionEndTag: string;
     private readonly _jqTransformationExpressions: string[];
+    private readonly _jqIsRaw: boolean = false;
 
     constructor(objectToParse: any) {
         {
@@ -50,6 +52,13 @@ export class NTAJQ {
                 Logger.warn(`For tag [${this._jqTransformationExpressions}], there are no jq expressions defined, is that right?`);
             }
         }
+        {
+            let isRaw = objectToParse[`${NTAJQ.JqTransformationIsRaw}`]
+            if (isRaw !== null && isRaw.lowercase === "true") {
+                this._jqIsRaw = true
+            }
+        }
+
     }
 
     public async adjust(monitoringRecord: MonitoringRecord): Promise<MonitoringRecord> {
@@ -132,7 +141,7 @@ export class NTAJQ {
 
     private async tryToApplySpecificExpression(possibleJSon: string, expression: string): Promise<string | null> {
         return new Promise((resolve, reject) => {
-            jq.run(expression, possibleJSon, {input: 'string'}).then((value: string) => {
+            jq.run(expression, possibleJSon, {input: 'string', raw: this._jqIsRaw }).then((value: string) => {
                 resolve(value)
             }).catch((reason: any) => {
                 Logger.error(`When running JQ Got exception: ${reason}`)

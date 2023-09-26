@@ -37,7 +37,8 @@ NotificationProcessor: {
 {
     "text-selection-start-tag": String, // The String that the notifier will start selecting text for processing (it should not be part of the json)
     "text-selection-end-tag": String, // The String that the notifier will end selecting text for processing (it should not be part of the json)
-    "jq-transformation-expressions": [String] // One or more jq expressions for changing the json
+    "jq-transformation-expressions": [String], // One or more jq expressions for changing the json
+    "jq-transformation-is-raw": boolean // <optional> If the application show be return a raw result
 }
 ```
 ---

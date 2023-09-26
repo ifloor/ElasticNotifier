@@ -154,5 +154,6 @@ export class NTAJQ {
         Logger.warn(`${deepness} textSelectionStartTag: ${this._textSelectionStartTag}`);
         Logger.warn(`${deepness} textSelectionEndTag: ${this._textSelectionEndTag}`);
         Logger.warn(`${deepness} jqTransformationExpressions: ${this._jqTransformationExpressions}`);
+        Logger.warn(`${deepness} jqIsRaw: ${this._jqIsRaw}`);
     }
 }

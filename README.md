@@ -13,18 +13,18 @@ The value should be a String with a valid json text. This JSON should be accordi
 ```
 ---
 Where the complex objects defined above, are as follow:
-1) The elastic config
+1) The "ElasticConfig" object
 ```
-ElasticConfig: {
+{
 	"elastic-server": String, // Full server url, ex: https://url.com:9200
 	"elastic-user": String,  // User to do the login on elasticsearch
 	"elastic-user-password": String, // Password for the above user
 }
 ```
 ---
-2) Notification processor:
+2) The "NotificationProcessor":
 ```
-NotificationProcessor: {
+{
 	"for-tag": String, // value that when found on 'tag' field, will trigger this processor
 	"text-adjustments": [NotificationTextAdjustment]
 	"destinations": [NotificationDestination]

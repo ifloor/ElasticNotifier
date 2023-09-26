@@ -54,7 +54,7 @@ export class NTAJQ {
         }
         {
             let isRaw = objectToParse[`${NTAJQ.JqTransformationIsRaw}`]
-            if (isRaw !== null && isRaw.lowercase === "true") {
+            if (isRaw !== null && isRaw.toLowerCase() === "true") {
                 this._jqIsRaw = true
             }
         }

@@ -45,7 +45,7 @@ export class NotificationTextAdjustment {
     }
 
     public logStructure(deepness: string): void {
-        Logger.warn(`${deepness} Destination type: ${this._type}`);
+        Logger.warn(`${deepness} Adjustment type: ${this._type}`);
         switch (this._type) {
             case NotificationTextAdjustmentType.JQ:
                 this._jq?.logStructure(deepness + "   ");

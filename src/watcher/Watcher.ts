@@ -1,9 +1,9 @@
-import {RootConfig} from "../runConfig/RootConfig";
+import {RootConfig} from "../runConfig/root/RootConfig";
 import {Logger} from "../utils/Logger";
 import {ElasticClient} from "../elastic/ElasticClient";
 import {WatchingRepository} from "../elastic/WatchingRepository";
 import {MonitoringRecord} from "../elastic/MonitoringRecord";
-import {NotificationProcessor} from "../runConfig/NotificationProcessor";
+import {NotificationProcessor} from "../runConfig/processor/NotificationProcessor";
 
 export class Watcher {
 
@@ -61,7 +61,7 @@ export class Watcher {
                 Logger.info(`Got monitoring records: ${monitoringRecords.length}`);
 
                 monitoringRecords.forEach(monitoringRecord => {
-                   this.notify(monitoringRecord);
+                   const _ = this.process(monitoringRecord);
                    this._lastFetchMonitoring = monitoringRecord.getTimestamp();
                 });
 
@@ -78,7 +78,7 @@ export class Watcher {
         }, this._watchingIntervalSeconds * 1000);
     }
 
-    private notify(monitoringRecord: MonitoringRecord): void {
+    private async process(monitoringRecord: MonitoringRecord): Promise<void> {
         const tag = monitoringRecord.getTag();
         Logger.info(`Monitoring found! Tag: ${tag}`);
 
@@ -95,6 +95,9 @@ export class Watcher {
 
         // @ts-ignore
         let processor: NotificationProcessor = this.loadedNotificationProcessors.get(tag);
+        for (let adjustment of processor.textAdjustments) {
+            monitoringRecord = await adjustment.adjust(monitoringRecord)
+        }
         processor.destinations.forEach(destination => {
             destination.notify(monitoringRecord);
         });

@@ -1,6 +1,6 @@
 import {Logger} from "./utils/Logger";
 import {VariablesExtractor} from "./utils/VariablesExtractor";
-import {RootConfig} from "./runConfig/RootConfig";
+import {RootConfig} from "./runConfig/root/RootConfig";
 import {Watcher} from "./watcher/Watcher";
 
 let extractor = new VariablesExtractor();

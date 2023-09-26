@@ -5,6 +5,38 @@ export class MonitoringRecord {
         this.anyData = anyIndex;
     }
 
+    public static fromProperties(
+      index: string | null,
+      timestamp: string | null,
+      tag: string | null,
+      title: string | null,
+      author: string | null,
+      messageUrl: string | null,
+      color: number | null,
+      thumbnail: string | null,
+      description: string | null,
+      image: string | null,
+      footer: string | null,
+    ): MonitoringRecord {
+        return new MonitoringRecord(
+          {
+              '_index': index,
+              '_source': {
+                  '@timestamp': timestamp,
+                  'tag': tag,
+                  'title': title,
+                  'author': author,
+                  'message-url': messageUrl,
+                  'color': color,
+                  'thumbnail': thumbnail,
+                  'description': description,
+                  'image': image,
+                  'footer': footer,
+              }
+          }
+        )
+    }
+
     public getIndex(): string {
         return this.anyData['_index'];
     }

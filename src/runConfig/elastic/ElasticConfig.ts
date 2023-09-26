@@ -1,4 +1,4 @@
-import {Logger} from "../utils/Logger";
+import {Logger} from "../../utils/Logger";
 
 export class ElasticConfig {
     private static readonly ElasticServerNode: string = "elastic-server";

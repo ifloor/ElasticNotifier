@@ -1,5 +1,5 @@
-import {Logger} from "../utils/Logger";
-import {MonitoringRecord} from "../elastic/MonitoringRecord";
+import {Logger} from "../../../utils/Logger";
+import {MonitoringRecord} from "../../../elastic/MonitoringRecord";
 import {MessageBuilder, Webhook} from "discord-webhook-node";
 
 export class NDDiscord {

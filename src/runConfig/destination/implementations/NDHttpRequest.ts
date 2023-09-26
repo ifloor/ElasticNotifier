@@ -1,9 +1,8 @@
-import {Logger} from "../utils/Logger";
-import {MonitoringRecord} from "../elastic/MonitoringRecord";
-import moment from "moment";
+import {Logger} from "../../../utils/Logger";
+import {MonitoringRecord} from "../../../elastic/MonitoringRecord";
+import axios from "axios";
 
 const https = require('https');
-import axios from "axios";
 
 export class NDHttpRequest {
     private static readonly Url: string = "url";

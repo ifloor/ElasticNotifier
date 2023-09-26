@@ -1,6 +1,5 @@
 import {Client} from "@elastic/elasticsearch";
-import {ElasticConfig} from "../runConfig/ElasticConfig";
-import {Logger} from "../utils/Logger";
+import {ElasticConfig} from "../runConfig/elastic/ElasticConfig";
 
 export class ElasticClient {
 

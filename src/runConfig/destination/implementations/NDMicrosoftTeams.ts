@@ -1,5 +1,5 @@
-import {Logger} from "../utils/Logger";
-import {MonitoringRecord} from "../elastic/MonitoringRecord";
+import {Logger} from "../../../utils/Logger";
+import {MonitoringRecord} from "../../../elastic/MonitoringRecord";
 import {IncomingWebhook} from "ms-teams-webhook";
 import moment from "moment";
 

@@ -1,10 +1,10 @@
-import {Logger} from "../utils/Logger";
+import {Logger} from "../../utils/Logger";
 import {NotificationDestinationType} from "./NotificationDestinationType";
-import {NDDiscord} from "./NDDiscord";
-import {MonitoringRecord} from "../elastic/MonitoringRecord";
-import {NDMicrosoftTeams} from "./NDMicrosoftTeams";
-import {NDSmtpEmail} from "./NDSmtpEmail";
-import {NDHttpRequest} from "./NDHttpRequest";
+import {NDDiscord} from "./implementations/NDDiscord";
+import {MonitoringRecord} from "../../elastic/MonitoringRecord";
+import {NDMicrosoftTeams} from "./implementations/NDMicrosoftTeams";
+import {NDSmtpEmail} from "./implementations/NDSmtpEmail";
+import {NDHttpRequest} from "./implementations/NDHttpRequest";
 
 export class NotificationDestination {
     private static readonly TypeNode: string = "type";

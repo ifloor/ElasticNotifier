@@ -1,6 +1,6 @@
-import {Logger} from "../utils/Logger";
-import {ElasticConfig} from "./ElasticConfig";
-import {NotificationProcessor} from "./NotificationProcessor";
+import {Logger} from "../../utils/Logger";
+import {ElasticConfig} from "../elastic/ElasticConfig";
+import {NotificationProcessor} from "../processor/NotificationProcessor";
 
 export class RootConfig {
     private static readonly ElasticConfigNode: string = "elastic-config";

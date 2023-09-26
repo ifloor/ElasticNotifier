@@ -69,6 +69,10 @@ export class NotificationProcessor {
     public logStructure(deepness: string): void {
         Logger.warn(`${deepness} For tag: ${this._forTag}`);
 
+        this._textAdjustments.forEach((adjustment) => {
+            adjustment.logStructure(deepness + "   ")
+        })
+
         this._destinations.forEach((destination) => {
             destination.logStructure(deepness + "   ");
         });

@@ -47,6 +47,7 @@ export class NDTelegram {
             if (messageThreadIdRaw == null) {
                 Logger.info(`Node ${NDTelegram.MessageThreadId} not specified`);
             }
+            this._messageThreadId = messageThreadIdRaw;
         }
 
     }

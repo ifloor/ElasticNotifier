@@ -5,6 +5,7 @@ import {MonitoringRecord} from "../../elastic/MonitoringRecord";
 import {NDMicrosoftTeams} from "./implementations/NDMicrosoftTeams";
 import {NDSmtpEmail} from "./implementations/NDSmtpEmail";
 import {NDHttpRequest} from "./implementations/NDHttpRequest";
+import {NDTelegram} from "./implementations/NDTelegram";
 
 export class NotificationDestination {
     private static readonly TypeNode: string = "type";
@@ -14,6 +15,7 @@ export class NotificationDestination {
     private readonly _microsoftTeams: NDMicrosoftTeams | null = null;
     private readonly _smtpEmail: NDSmtpEmail | null = null;
     private readonly _httpRequest: NDHttpRequest | null = null;
+    private readonly _telegram: NDTelegram | null = null;
 
     constructor(objectToParse: any) {
         let typeRaw = objectToParse[`${NotificationDestination.TypeNode}`]
@@ -53,6 +55,10 @@ export class NotificationDestination {
                 this._httpRequest = new NDHttpRequest(objectToParse);
                 break;
 
+            case NotificationDestinationType.TELEGRAM:
+                this._telegram = new NDTelegram(objectToParse);
+                break;
+
             default:
                 break;
         }
@@ -77,6 +83,10 @@ export class NotificationDestination {
             case NotificationDestinationType.HTTP_REQUEST:
                 this._httpRequest?.notify(monitoringRecord);
                 break;
+
+            case NotificationDestinationType.TELEGRAM:
+                this._telegram?.notify(monitoringRecord);
+                break;
         }
     }
 
@@ -97,6 +107,10 @@ export class NotificationDestination {
 
             case NotificationDestinationType.HTTP_REQUEST:
                 this._httpRequest?.logStructure(deepness + "   ");
+                break;
+
+            case NotificationDestinationType.TELEGRAM:
+                this._telegram?.logStructure(deepness + "   ");
                 break;
         }
     }

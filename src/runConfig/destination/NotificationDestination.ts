@@ -30,6 +30,8 @@ export class NotificationDestination {
             this._type = NotificationDestinationType.SMTP_EMAIL;
         } else if (typeRaw.toUpperCase() == NotificationDestinationType.HTTP_REQUEST.toString()) {
             this._type = NotificationDestinationType.HTTP_REQUEST;
+        } else if (typeRaw.toUpperCase() == NotificationDestinationType.TELEGRAM.toString()) {
+            this._type = NotificationDestinationType.TELEGRAM;
         } else {
             Logger.warn(`Type ${typeRaw.toUpperCase()} not recognized. Skipping`);
         }

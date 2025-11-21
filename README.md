@@ -39,7 +39,7 @@ Where the complex objects defined above, are as follow:
     "text-selection-start-tag": String, // The String that the notifier will start selecting text for processing (it should not be part of the json)
     "text-selection-end-tag": String, // The String that the notifier will end selecting text for processing (it should not be part of the json)
     "jq-transformation-expressions": [String], // One or more jq expressions for changing the json
-    "jq-transformation-is-raw": boolean // <optional> If the application show be return a raw result
+    "jq-transformation-is-raw": boolean // <optional> If the application should return a raw result
 }
 ```
 ---
@@ -79,9 +79,21 @@ Where the complex objects defined above, are as follow:
     "add-header-to-request": JSon // {'header1': 'hvalue1'}
 }
 ```
+```
+// When TELEGRAM type
+{
+    "type": "TELEGRAM",
+    "bot-token": String,
+    "chat-id": String,
+    "parse-mode": String,
+    "message-thread-id": String | null,
+    
+}
+```
 ---
 5) When writing the message on elastic, the below fields can be specified on the elastic object that will be watched:
 ```
+// For DISCORD:
 "title": String,
 "author": String,
 "message-url": String,
@@ -92,5 +104,23 @@ Where the complex objects defined above, are as follow:
 "footer": String
 ```
 The meaning of these fields are based on: https://www.npmjs.com/package/discord-webhook-node
+
+```
+// For MICROSOFT_TEAMS:
+```
+
+```
+// For SMTP_EMAIL:
+```
+
+```
+// For HTTP_REQUEST:
+```
+
+```
+
+// For TELEGRAM:
+"description": String,
+```
 
 ---

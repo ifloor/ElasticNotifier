@@ -76,7 +76,11 @@ export class NDHttpRequest {
         axios.post(this._url, body, {headers: headers}).then((response) => {
             Logger.info(`Got response: ${JSON.stringify(response)}`);
         }).catch(reason => {
-            Logger.warn(`Got error calling request: Reason: ${JSON.stringify(reason)}`);
+            if (reason && reason.response) {
+                Logger.warn(`Got error calling request: status: ${reason.response.status}; payload: ${JSON.stringify(reason.response.data)}`);
+            } else {
+                Logger.warn(`Got error calling request: Reason: ${JSON.stringify(reason)}`);
+            }
         });
     }
 

@@ -77,7 +77,9 @@ export class NDTelegram {
         }).catch(reason => {
             Logger.warn(`Got error calling request: Reason: ${JSON.stringify(reason)}`);
 
-            this.sendMessage("[E400]" + text, "html");
+            if (body.parse_mode !== "html") {
+                this.sendMessage("[E400]" + text, "html");
+            }
         });
     }
 

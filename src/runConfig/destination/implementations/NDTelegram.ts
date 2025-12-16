@@ -62,10 +62,10 @@ export class NDTelegram {
         this.sendMessage(text);
     }
 
-    private sendMessage(text: String) {
+    private sendMessage(text: String, parseModeOverride: string | null = null) {
         const body = {
             chat_id: this._chatId,
-            parse_mode: this._parseMode,
+            parse_mode: parseModeOverride !== null ? parseModeOverride : this._parseMode,
             message_thread_id: this._messageThreadId,
             text: text,
         }
@@ -76,6 +76,8 @@ export class NDTelegram {
             Logger.info(`Got response: ${JSON.stringify(response)}`);
         }).catch(reason => {
             Logger.warn(`Got error calling request: Reason: ${JSON.stringify(reason)}`);
+
+            this.sendMessage(text, "html");
         });
     }
 

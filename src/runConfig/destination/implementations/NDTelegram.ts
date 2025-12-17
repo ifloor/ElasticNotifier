@@ -74,8 +74,11 @@ export class NDTelegram {
 
         axios.post(url, body, {}).then((response) => {
             Logger.info(`Got response: ${JSON.stringify(response)}`);
-        }).catch(reason => {
-            Logger.warn(`Got error calling request: Reason: ${JSON.stringify(reason)}`);
+        }).catch(error => {
+            const status = error?.response?.status;
+            const payload = error?.response?.data;
+
+            Logger.warn(`Got error calling request: status=${status} payload=${JSON.stringify(payload)}`);
 
             if (body.parse_mode !== "html") {
                 this.sendMessage("[E400]" + text, "html");
